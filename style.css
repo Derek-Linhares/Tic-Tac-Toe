@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+html {
+  font-size: 10px;
+  color: #ffffff;
+  background: transparent;
+
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff18ff,
+    0 0 30px #ff18ff, 0 0 40px #ff18ff, 0 0 55px #ff18ff, 0 0 75px #ff18ff;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: url(./assets/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  width: 85rem;
+  height: 85rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+}
+
+.square {
+  width: 23rem;
+  height: 23rem;
+  background-color: red;
+  border-radius: 5%;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.9s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 8rem;
+  color: #ffffff;
+  background: transparent;
+  border: #ff00bfab 2px solid;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff18ff,
+    0 0 30px #ff18ff, 0 0 40px #ff18ff, 0 0 55px #ff18ff, 0 0 75px #ff18ff;
+}
+
+.flip {
+  transform: rotate(360deg);
+}
+
+.blink {
+  background-color: rgb(132, 2, 158);
+}
+
+#result {
+  width: 70rem;
+  height: 9rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -5rem;
+}
+#restart {
+  background-color: #ff18ff;
+  width: 20rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  border-radius: 2%;
+  cursor: pointer;
+  font-size: 2rem;
+}
+#restart:hover {
+  background-color: #ca12ca;
+}
+@media (max-height: 1440px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (max-height: 1080px) {
+  html {
+    font-size: 8.5px;
+  }
+  .container {
+    margin-top: -5rem;
+  }
+}
+
+@media (max-width: 1440px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 1280px) {
+  html {
+    font-size: 7.5px;
+  }
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 7.5px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 6px;
+  }
+}
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  touch-action: none;
+}
