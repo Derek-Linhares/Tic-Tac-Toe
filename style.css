@@ -18,6 +18,9 @@ html {
 h1 {
   font-size: 5rem;
 }
+#title {
+  margin-bottom: 5rem;
+}
 
 body {
   width: 100vw;
@@ -103,16 +106,13 @@ body {
 
 @media (max-height: 1440px) {
   html {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 
 @media (max-height: 1080px) {
   html {
-    font-size: 8.5px;
-  }
-  .container {
-    margin-top: -5rem;
+    font-size: 8px;
   }
 }
 
@@ -136,8 +136,11 @@ body {
 
 @media (max-width: 768px) {
   html {
-    font-size: 6px;
+    font-size: 5.5px;
   }
+}
+#title {
+  margin-bottom: 10rem;
 }
 body {
   overflow-y: hidden;

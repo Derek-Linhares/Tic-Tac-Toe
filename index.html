@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Tic Tac Toe <span class="note" onclick="toggleMusic(background)">🎵</span></h1>
+    <h1 id="title">Tic Tac Toe <span class="note" onclick="toggleMusic(background)">🎵</span></h1>
     <div class="container">
         <div class="square" id="0"></div>
         <div class="square" id="1"></div>
@@ -27,7 +27,7 @@
     <div id="restart" onclick="resetGame()">Restart Game</div>
     <audio
         src="./assets/80s Retrowave _ Synthwave Music - Hackers by Karl Casey __ Royalty Free Copyright Safe Music - White Bat Audio.mp3"
-        id="backgroundMusic"></audio>
+        id="backgroundMusic" loop="true"></audio>
     <audio src="./assets/spin.mp3" id="spinSound"></audio>
     <audio src="./assets/playerO.mp3" id="playerO"></audio>
     <audio src="./assets/playerX.mp3" id="playerX"></audio>
