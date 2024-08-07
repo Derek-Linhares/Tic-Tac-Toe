@@ -8,12 +8,15 @@ let jogador1 = true;
 let canPlay = true;
 let result = document.getElementById("result");
 background.volume = 0.3;
+let playingTheme = false;
+let moved = false;
 
 squares.forEach((square) => {
   square.addEventListener("click", () => {
     if (canPlay && square.innerHTML === "") {
       square.classList.add("flip");
       playSound(spin);
+      moved = true;
       square.innerHTML = jogador1 ? "O" : "X";
       jogador1 = !jogador1;
       checkWinner();
@@ -41,14 +44,15 @@ function checkWinner() {
 
     if (squareA !== "" && squareA === squareB && squareA === squareC) {
       canPlay = false;
-      if (jogador1) {
-        playSound(x);
-      }
-      if (!jogador1) {
-        playSound(o);
-      }
+
       blinkSquares(combination);
       setTimeout(() => {
+        if (jogador1) {
+          playSound(x);
+        }
+        if (!jogador1) {
+          playSound(o);
+        }
         result.innerHTML = `<h1>Player ${squareA} wins!</h1>`;
       }, 100 * 3 * 2 + 10);
       return;
@@ -81,7 +85,9 @@ function blinkSquares(combination) {
 }
 
 function resetGame() {
-  playSound(spin);
+  if (moved) {
+    playSound(spin);
+  }
   squares.forEach((square) => {
     square.classList.remove("flip", "blink");
     square.innerHTML = "";
@@ -89,6 +95,7 @@ function resetGame() {
   });
   jogador1 = true;
   canPlay = true;
+  moved = false;
 }
 
 function playSound(audio) {
@@ -96,4 +103,13 @@ function playSound(audio) {
   audio.play();
 }
 
-playSound(background);
+function toggleMusic() {
+  if (playingTheme) {
+    background.pause();
+    background.currentTime = 0;
+    playingTheme = false;
+  } else {
+    playSound(background);
+    playingTheme = true;
+  }
+}

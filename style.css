@@ -96,6 +96,11 @@ body {
 #restart:hover {
   background-color: #ca12ca;
 }
+
+.note {
+  cursor: pointer;
+}
+
 @media (max-height: 1440px) {
   html {
     font-size: 11px;
