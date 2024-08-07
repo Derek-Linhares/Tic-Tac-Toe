@@ -1,15 +1,19 @@
 const squares = document.querySelectorAll(".square");
-const body = document.body;
+const background = document.getElementById("backgroundMusic");
+const spin = document.getElementById("spinSound");
+const x = document.getElementById("playerX");
+const o = document.getElementById("playerO");
+const draw = document.getElementById("draw");
 let jogador1 = true;
 let canPlay = true;
 let result = document.getElementById("result");
-
-body.classList.add("no-select");
+background.volume = 0.3;
 
 squares.forEach((square) => {
   square.addEventListener("click", () => {
     if (canPlay && square.innerHTML === "") {
       square.classList.add("flip");
+      playSound(spin);
       square.innerHTML = jogador1 ? "O" : "X";
       jogador1 = !jogador1;
       checkWinner();
@@ -37,10 +41,16 @@ function checkWinner() {
 
     if (squareA !== "" && squareA === squareB && squareA === squareC) {
       canPlay = false;
+      if (jogador1) {
+        playSound(x);
+      }
+      if (!jogador1) {
+        playSound(o);
+      }
       blinkSquares(combination);
       setTimeout(() => {
         result.innerHTML = `<h1>Player ${squareA} wins!</h1>`;
-      }, 200 * 3 * 2 + 10);
+      }, 100 * 3 * 2 + 10);
       return;
     }
   }
@@ -49,6 +59,7 @@ function checkWinner() {
     (square) => square.innerHTML !== ""
   );
   if (allFilled && canPlay === true) {
+    playSound(draw);
     setTimeout(() => {
       result.innerHTML = `<h1>Draw Game</h1>`;
     }, 200);
@@ -70,6 +81,7 @@ function blinkSquares(combination) {
 }
 
 function resetGame() {
+  playSound(spin);
   squares.forEach((square) => {
     square.classList.remove("flip", "blink");
     square.innerHTML = "";
@@ -78,3 +90,10 @@ function resetGame() {
   jogador1 = true;
   canPlay = true;
 }
+
+function playSound(audio) {
+  audio.currentTime = 0;
+  audio.play();
+}
+
+playSound(background);
