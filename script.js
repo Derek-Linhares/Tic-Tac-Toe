@@ -10,6 +10,16 @@ let result = document.getElementById("result");
 background.volume = 0.3;
 let playingTheme = false;
 let moved = false;
+let scoreX = document.getElementById("scoreX");
+let scoreDraw = document.getElementById("scoreDraw");
+let scoreO = document.getElementById("scoreO");
+let oVictories = 0;
+let xVictories = 0;
+let draws = 0;
+scoreO.innerText = oVictories;
+scoreDraw.innerText = draws;
+scoreX.innerText = xVictories;
+let restart = document.getElementById("restart");
 
 squares.forEach((square) => {
   square.addEventListener("click", () => {
@@ -53,7 +63,14 @@ function checkWinner() {
         if (!jogador1) {
           playSound(o);
         }
-        result.innerHTML = `<h1>Player ${squareA} wins!</h1>`;
+        result.innerHTML = `<h1>Player ${squareA} Wins!</h1>`;
+        if (squareA == "O") {
+          scoreO.innerText = oVictories += 1;
+        }
+        if (squareA == "X") {
+          scoreX.innerText = xVictories += 1;
+        }
+        restart.style.visibility = "visible";
       }, 100 * 3 * 2 + 10);
       return;
     }
@@ -66,6 +83,8 @@ function checkWinner() {
     playSound(draw);
     setTimeout(() => {
       result.innerHTML = `<h1>Draw Game</h1>`;
+      scoreDraw.innerText = draws += 1;
+      restart.style.visibility = "visible";
     }, 200);
   }
 }
@@ -78,7 +97,7 @@ function blinkSquares(combination) {
       square.classList.toggle("blink");
     });
     blinkCount++;
-    if (blinkCount === 6) {
+    if (blinkCount === 7) {
       clearInterval(interval);
     }
   }, 180);
@@ -86,12 +105,17 @@ function blinkSquares(combination) {
 
 function resetGame() {
   if (moved) {
-    playSound(spin);
+    setTimeout(() => {
+      playSound(spin);
+    }, 185);
   }
   squares.forEach((square) => {
-    square.classList.remove("flip", "blink");
+    setTimeout(() => {
+      square.classList.remove("flip", "blink");
+    }, 185);
     square.innerHTML = "";
     result.innerHTML = "";
+    restart.style.visibility = "hidden";
   });
   jogador1 = true;
   canPlay = true;

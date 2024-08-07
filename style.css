@@ -15,13 +15,6 @@ html {
     0 0 30px #ff18ff, 0 0 40px #ff18ff, 0 0 55px #ff18ff, 0 0 75px #ff18ff;
 }
 
-h1 {
-  font-size: 5rem;
-}
-#title {
-  margin-bottom: 5rem;
-}
-
 body {
   width: 100vw;
   height: 100vh;
@@ -33,6 +26,42 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+h1 {
+  font-size: 5rem;
+}
+#title {
+  margin-bottom: 5rem;
+}
+
+.modal {
+  width: 90rem;
+  height: 90rem;
+  background-color: #3d013d;
+  position: absolute;
+  z-index: 10;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.score {
+  width: 75rem;
+  height: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 4rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
 }
 
 .container {
@@ -85,9 +114,8 @@ body {
   margin-top: -5rem;
 }
 #restart {
-  background-color: #ff18ff;
-  width: 20rem;
-  height: 5rem;
+  width: 12rem;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,12 +123,18 @@ body {
   border-radius: 2%;
   cursor: pointer;
   font-size: 2rem;
+  visibility: hidden;
 }
 #restart:hover {
-  background-color: #ca12ca;
+  transform: scale(1.2);
 }
 
-.note {
+#note {
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+
+  font-size: 5rem;
   cursor: pointer;
 }
 
