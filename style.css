@@ -183,6 +183,8 @@ h2 {
   border: #ff18ff 1rem solid;
   border-radius: 5%;
   visibility: visible;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 #welcomeH1 {
