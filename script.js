@@ -3,6 +3,8 @@ const background = document.getElementById("backgroundMusic");
 const spin = document.getElementById("spinSound");
 const x = document.getElementById("playerX");
 const o = document.getElementById("playerO");
+const cpuWins = document.getElementById("cpuWins");
+const playerWins = document.getElementById("humanWins");
 const draw = document.getElementById("draw");
 let jogador1 = true;
 let canPlay = true;
@@ -20,19 +22,72 @@ scoreO.innerText = oVictories;
 scoreDraw.innerText = draws;
 scoreX.innerText = xVictories;
 let restart = document.getElementById("restart");
+const titleScreen = document.getElementById("welcome");
+const musicBtn = document.getElementById("note");
+const title = document.getElementById("title");
+const container = document.getElementById("container");
+const score = document.getElementById("score");
+let playerOne = document.getElementById("playerOne");
+let playerTwo = document.getElementById("playerTwo");
+let cpu = false;
 
-squares.forEach((square) => {
-  square.addEventListener("click", () => {
-    if (canPlay && square.innerHTML === "") {
-      square.classList.add("flip");
+function gameStart() {
+  titleScreen.style.visibility = "hidden";
+  musicBtn.style.visibility = "visible";
+  container.style.visibility = "visible";
+  title.style.visibility = "visible";
+  score.style.visibility = "visible";
+}
+
+function toggleMusic() {
+  if (playingTheme) {
+    background.pause();
+    background.currentTime = 0;
+    playingTheme = false;
+  } else {
+    playSound(background);
+    playingTheme = true;
+  }
+}
+
+function resetGame() {
+  if (moved) {
+    setTimeout(() => {
       playSound(spin);
-      moved = true;
-      square.innerHTML = jogador1 ? "O" : "X";
-      jogador1 = !jogador1;
-      checkWinner();
-    }
+    }, 185);
+  }
+  squares.forEach((square) => {
+    setTimeout(() => {
+      square.classList.remove("flip", "blink");
+    }, 185);
+    square.innerHTML = "";
+    result.innerHTML = "";
+    restart.style.visibility = "hidden";
   });
-});
+  jogador1 = true;
+  canPlay = true;
+  moved = false;
+  playerTurn = true;
+}
+
+function playSound(audio) {
+  audio.currentTime = 0;
+  audio.play();
+}
+
+function blinkSquares(combination) {
+  let blinkCount = 0;
+  const interval = setInterval(() => {
+    combination.forEach((index) => {
+      const square = document.getElementById(index.toString());
+      square.classList.toggle("blink");
+    });
+    blinkCount++;
+    if (blinkCount === 7) {
+      clearInterval(interval);
+    }
+  }, 180);
+}
 
 function checkWinner() {
   const winningCombinations = [
@@ -57,25 +112,28 @@ function checkWinner() {
 
       blinkSquares(combination);
       setTimeout(() => {
-        if (jogador1) {
-          playSound(x);
-        }
-        if (!jogador1) {
-          playSound(o);
-        }
-        result.innerHTML = `<h1>Player ${squareA} Wins!</h1>`;
-        if (squareA == "O") {
+        if (squareA === "O" && cpu == false) {
           scoreO.innerText = oVictories += 1;
-        }
-        if (squareA == "X") {
+          result.innerHTML = `<h1>Player ${squareA} Wins!</h1>`;
+          playSound(squareA === "O" ? o : x);
+        } else if (squareA === "X" && cpu == false) {
           scoreX.innerText = xVictories += 1;
+          result.innerHTML = `<h1>Player ${squareA} Wins!</h1>`;
+          playSound(squareA === "O" ? o : x);
+        } else if (squareA === "O" && cpu == true) {
+          scoreO.innerText = oVictories += 1;
+          result.innerHTML = `<h1>Human Player Wins</h1>`;
+          playSound(playerWins);
+        } else if (squareA === "X" && cpu == true) {
+          scoreX.innerText = xVictories += 1;
+          result.innerHTML = `<h1>CPU Player Wins!</h1>`;
+          playSound(cpuWins);
         }
         restart.style.visibility = "visible";
       }, 100 * 3 * 2 + 10);
       return;
     }
   }
-
   const allFilled = Array.from(squares).every(
     (square) => square.innerHTML !== ""
   );
@@ -86,54 +144,5 @@ function checkWinner() {
       scoreDraw.innerText = draws += 1;
       restart.style.visibility = "visible";
     }, 200);
-  }
-}
-
-function blinkSquares(combination) {
-  let blinkCount = 0;
-  const interval = setInterval(() => {
-    combination.forEach((index) => {
-      const square = document.getElementById(index.toString());
-      square.classList.toggle("blink");
-    });
-    blinkCount++;
-    if (blinkCount === 7) {
-      clearInterval(interval);
-    }
-  }, 180);
-}
-
-function resetGame() {
-  if (moved) {
-    setTimeout(() => {
-      playSound(spin);
-    }, 185);
-  }
-  squares.forEach((square) => {
-    setTimeout(() => {
-      square.classList.remove("flip", "blink");
-    }, 185);
-    square.innerHTML = "";
-    result.innerHTML = "";
-    restart.style.visibility = "hidden";
-  });
-  jogador1 = true;
-  canPlay = true;
-  moved = false;
-}
-
-function playSound(audio) {
-  audio.currentTime = 0;
-  audio.play();
-}
-
-function toggleMusic() {
-  if (playingTheme) {
-    background.pause();
-    background.currentTime = 0;
-    playingTheme = false;
-  } else {
-    playSound(background);
-    playingTheme = true;
   }
 }

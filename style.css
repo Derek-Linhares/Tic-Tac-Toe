@@ -19,7 +19,7 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
   background: url(./assets/background.jpg);
@@ -33,23 +33,12 @@ h1 {
 }
 #title {
   margin-bottom: 5rem;
+  margin-top: 5rem;
+  visibility: hidden;
 }
 
-.modal {
-  width: 90rem;
-  height: 90rem;
-  background-color: #3d013d;
-  position: absolute;
-  z-index: 10;
-  border-radius: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  display: none;
-}
-
-.score {
-  width: 75rem;
+#score {
+  width: 70rem;
   height: 6rem;
   display: flex;
   flex-direction: row;
@@ -57,6 +46,8 @@ h1 {
   align-items: center;
   font-size: 4rem;
   text-align: center;
+  margin-left: rem;
+  visibility: hidden;
 }
 
 h2 {
@@ -64,7 +55,7 @@ h2 {
   margin-bottom: 1rem;
 }
 
-.container {
+#container {
   width: 85rem;
   height: 85rem;
   display: flex;
@@ -74,6 +65,7 @@ h2 {
   justify-content: center;
   align-items: center;
   padding: 5rem;
+  visibility: hidden;
 }
 
 .square {
@@ -114,15 +106,13 @@ h2 {
   margin-top: -5rem;
 }
 #restart {
-  width: 12rem;
-  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: large;
   border-radius: 2%;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 3rem;
   visibility: hidden;
 }
 #restart:hover {
@@ -136,35 +126,100 @@ h2 {
 
   font-size: 5rem;
   cursor: pointer;
+  visibility: hidden;
+}
+
+.btn {
+  display: inline;
+
+  text-align: center;
+  line-height: 60px;
+  color: #fff;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 400%;
+  border-radius: 30px;
+  z-index: 1;
+  cursor: pointer;
+  padding: 2rem;
+}
+
+#welcome {
+  width: 75rem;
+  height: 110rem;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(rgb(178, 0, 238), green, blue, 0.1);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  border: #ff18ff 1rem solid;
+  border-radius: 5%;
+  visibility: visible;
+}
+
+#welcomeH1 {
+  width: 55rem;
+  font-size: 8rem;
+  margin-bottom: 15rem;
+  text-align: center;
+}
+
+.btn:hover {
+  animation: animate 8s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 400%;
+  }
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -5px;
 }
 
 @media (max-height: 1440px) {
   html {
-    font-size: 10px;
+    font-size: 9px;
   }
 }
 
 @media (max-height: 1080px) {
   html {
-    font-size: 8px;
+    font-size: 7px;
   }
 }
 
 @media (max-width: 1440px) {
   html {
-    font-size: 8px;
+    font-size: 7px;
   }
 }
 
 @media (max-width: 1280px) {
   html {
-    font-size: 7.5px;
+    font-size: 6.5px;
   }
 }
 
 @media (max-width: 1024px) {
   html {
-    font-size: 7.5px;
+    font-size: 6.5px;
   }
 }
 
