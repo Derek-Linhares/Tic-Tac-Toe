@@ -30,6 +30,7 @@ const score = document.getElementById("score");
 let playerOne = document.getElementById("playerOne");
 let playerTwo = document.getElementById("playerTwo");
 let cpu = false;
+let playerTurn = true;
 
 function gameStart() {
   titleScreen.style.visibility = "hidden";
