@@ -23,9 +23,28 @@ body {
   align-items: center;
   flex-direction: column;
   background: url(./assets/background.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-repeat: repeat;
+  background-size: 150% 150%;
+  background-position: 0 0;
+  animation: moverBackground 36s infinite alternate;
+}
+
+@keyframes moverBackground {
+  0% {
+    background-position: 0 0;
+  }
+  25% {
+    background-position: 60% 0;
+  }
+  50% {
+    background-position: 60% 60%;
+  }
+  75% {
+    background-position: 0 60%;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 h1 {
