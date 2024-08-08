@@ -37,6 +37,8 @@ function gameStart() {
   container.style.visibility = "visible";
   title.style.visibility = "visible";
   score.style.visibility = "visible";
+  playSound(background);
+  playingTheme = true;
 }
 
 function toggleMusic() {

@@ -4,7 +4,6 @@ function startVsCPU() {
   playerOne.innerText = "Human";
   playerTwo.innerText = "Computer";
   gameStart();
-  playSound(background);
   squares.forEach((square) => {
     square.addEventListener("click", () => {
       if (canPlay && square.innerHTML === "" && playerTurn) {

@@ -1,6 +1,6 @@
 function StartTwoPlayers() {
   gameStart();
-  playSound(background);
+
   squares.forEach((square) => {
     square.addEventListener("click", () => {
       if (canPlay && square.innerHTML === "") {
