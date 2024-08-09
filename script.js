@@ -149,3 +149,39 @@ function checkWinner() {
     }, 200);
   }
 }
+
+function makeBestMove(player) {
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (const combination of winningCombinations) {
+    const [a, b, c] = combination;
+    const squareA = document.getElementById(a.toString()).innerHTML;
+    const squareB = document.getElementById(b.toString()).innerHTML;
+    const squareC = document.getElementById(c.toString()).innerHTML;
+
+    if (
+      (squareA === player && squareB === player && squareC === "") ||
+      (squareA === player && squareB === "" && squareC === player) ||
+      (squareA === "" && squareB === player && squareC === player)
+    ) {
+      const emptyIndex = [a, b, c].find(
+        (index) => document.getElementById(index.toString()).innerHTML === ""
+      );
+      const bestSquare = document.getElementById(emptyIndex.toString());
+      bestSquare.classList.add("flip");
+      playSound(spin);
+      bestSquare.innerHTML = "X";
+      return true;
+    }
+  }
+  return false;
+}

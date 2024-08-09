@@ -102,9 +102,9 @@ h2 {
   font-size: 8rem;
   color: #ffffff;
   background: transparent;
-  border: #ff00bfab 2px solid;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff18ff,
-    0 0 30px #ff18ff, 0 0 40px #ff18ff, 0 0 55px #ff18ff, 0 0 75px #ff18ff;
+  border: #ff00bfab 0.2rem solid;
+  text-shadow: 0 0 0.5rem #fff, 0 0 1rem #fff, 0 0 1.5rem #fff, 0 0 2rem #ff18ff,
+    0 0 3rem #ff18ff, 0 0 4rem #ff18ff, 0 0 5.5rem #ff18ff, 0 0 7.5rem #ff18ff;
 }
 
 .flip {
@@ -150,18 +150,18 @@ h2 {
 
 .btn {
   display: inline;
-
+  width: 45rem;
   text-align: center;
-  line-height: 60px;
+  line-height: 6rem;
   color: #fff;
-  font-size: 24px;
+  font-size: 2.4rem;
   text-transform: uppercase;
   text-decoration: none;
   font-family: sans-serif;
   box-sizing: border-box;
   background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
   background-size: 400%;
-  border-radius: 30px;
+  border-radius: 3rem;
   z-index: 1;
   cursor: pointer;
   padding: 2rem;
@@ -190,7 +190,7 @@ h2 {
 #welcomeH1 {
   width: 55rem;
   font-size: 8rem;
-  margin-bottom: 15rem;
+  margin-bottom: 5rem;
   text-align: center;
 }
 
@@ -210,8 +210,8 @@ h2 {
 .btn:before {
   content: "";
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: -0.5rem;
+  right: -0.5rem;
 }
 
 @media (max-height: 1440px) {

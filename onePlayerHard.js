@@ -3,6 +3,7 @@ function startVsCPUHard() {
   playerOne.innerText = "Human";
   playerTwo.innerText = "Computer";
   gameStart();
+
   squares.forEach((square) => {
     square.addEventListener("click", () => {
       if (canPlay && square.innerHTML === "" && playerTurn) {
@@ -23,31 +24,71 @@ function startVsCPUHard() {
       (square) => square.innerHTML === ""
     );
 
-    let moveMade = makeBestMove("X");
-    if (!moveMade) {
-      moveMade = makeBestMove("O");
+    let bestMove;
+    if (emptySquares.length === 9) {
+      bestMove = 0; // Primeira jogada da CPU: canto
+    } else if (emptySquares.length === 8) {
+      bestMove = emptySquares.includes(document.getElementById("4"))
+        ? 4 // Segunda jogada da CPU: centro, se disponível
+        : 2; // Caso o centro esteja ocupado, joga em outro canto
+    } else {
+      bestMove = minimax(true, -Infinity, Infinity).index;
     }
 
-    if (!moveMade) {
-      const centerSquare = document.getElementById("4");
-      if (emptySquares.includes(centerSquare)) {
-        centerSquare.classList.add("flip");
-        playSound(spin);
-        centerSquare.innerHTML = "X";
-      } else {
-        const randomIndex = Math.floor(Math.random() * emptySquares.length);
-        const cpuSquare = emptySquares[randomIndex];
-        cpuSquare.classList.add("flip");
-        playSound(spin);
-        cpuSquare.innerHTML = "X";
-      }
-    }
-
+    const cpuSquare = document.getElementById(bestMove);
+    cpuSquare.classList.add("flip");
+    playSound(spin);
+    cpuSquare.innerHTML = "X";
     checkWinner();
     playerTurn = true;
   }
 
-  function makeBestMove(player) {
+  function minimax(isMaximizing, alpha, beta) {
+    const winner = getWinner();
+    if (winner === "X") return { score: 10 };
+    if (winner === "O") return { score: -10 };
+    const emptySquares = Array.from(squares).filter(
+      (square) => square.innerHTML === ""
+    );
+    if (emptySquares.length === 0) return { score: 0 };
+
+    let bestMove;
+    if (isMaximizing) {
+      let bestScore = -Infinity;
+      for (let i = 0; i < squares.length; i++) {
+        if (squares[i].innerHTML === "") {
+          squares[i].innerHTML = "X";
+          const score = minimax(false, alpha, beta).score;
+          squares[i].innerHTML = "";
+          if (score > bestScore) {
+            bestScore = score;
+            bestMove = i;
+          }
+          alpha = Math.max(alpha, score);
+          if (beta <= alpha) break; // Poda beta
+        }
+      }
+      return { score: bestScore, index: bestMove };
+    } else {
+      let bestScore = Infinity;
+      for (let i = 0; i < squares.length; i++) {
+        if (squares[i].innerHTML === "") {
+          squares[i].innerHTML = "O";
+          const score = minimax(true, alpha, beta).score;
+          squares[i].innerHTML = "";
+          if (score < bestScore) {
+            bestScore = score;
+            bestMove = i;
+          }
+          beta = Math.min(beta, score);
+          if (beta <= alpha) break; // Poda alfa
+        }
+      }
+      return { score: bestScore, index: bestMove };
+    }
+  }
+
+  function getWinner() {
     const winningCombinations = [
       [0, 1, 2],
       [3, 4, 5],
@@ -61,25 +102,14 @@ function startVsCPUHard() {
 
     for (const combination of winningCombinations) {
       const [a, b, c] = combination;
-      const squareA = document.getElementById(a.toString()).innerHTML;
-      const squareB = document.getElementById(b.toString()).innerHTML;
-      const squareC = document.getElementById(c.toString()).innerHTML;
-
       if (
-        (squareA === player && squareB === player && squareC === "") ||
-        (squareA === player && squareB === "" && squareC === player) ||
-        (squareA === "" && squareB === player && squareC === player)
+        squares[a].innerHTML &&
+        squares[a].innerHTML === squares[b].innerHTML &&
+        squares[a].innerHTML === squares[c].innerHTML
       ) {
-        const emptyIndex = [a, b, c].find(
-          (index) => document.getElementById(index.toString()).innerHTML === ""
-        );
-        const bestSquare = document.getElementById(emptyIndex.toString());
-        bestSquare.classList.add("flip");
-        playSound(spin);
-        bestSquare.innerHTML = "X";
-        return true;
+        return squares[a].innerHTML;
       }
     }
-    return false;
+    return null;
   }
 }

@@ -3,6 +3,7 @@ function startVsCPU() {
   playerOne.innerText = "Human";
   playerTwo.innerText = "Computer";
   gameStart();
+
   squares.forEach((square) => {
     square.addEventListener("click", () => {
       if (canPlay && square.innerHTML === "" && playerTurn) {
@@ -19,29 +20,52 @@ function startVsCPU() {
   });
 
   function cpuPlay() {
-    const cpuSquares = Array.from(squares).filter(
-      (square) => square.innerHTML === "X"
-    );
     const emptySquares = Array.from(squares).filter(
       (square) => square.innerHTML === ""
     );
-    const centerSquare = document.getElementById("4");
+    let moveMade = false;
 
-    if (emptySquares.length > 0) {
-      if (emptySquares.includes(centerSquare)) {
+    // 50% de chance de tentar bloquear ou ganhar
+    if (Math.random() < 0.5) {
+      moveMade = makeBestMove("X") || makeBestMove("O");
+    }
+
+    // Se não fez a jogada, joga no centro, canto ou aleatório
+    if (!moveMade) {
+      const centerSquare = document.getElementById("4");
+      if (centerSquare.innerHTML === "") {
         centerSquare.classList.add("flip");
         playSound(spin);
         centerSquare.innerHTML = "X";
-      } else {
-        const randomIndex = Math.floor(Math.random() * emptySquares.length);
-        const cpuSquare = emptySquares[randomIndex];
-        cpuSquare.classList.add("flip");
-        playSound(spin);
-        cpuSquare.innerHTML = "X";
+        moveMade = true;
       }
-
-      checkWinner();
-      playerTurn = true;
     }
+
+    if (!moveMade) {
+      const cornerIndexes = [0, 2, 6, 8];
+      const cornerSquares = cornerIndexes
+        .map((index) => document.getElementById(index.toString()))
+        .filter((square) => square.innerHTML === "");
+
+      if (cornerSquares.length > 0) {
+        const randomCorner =
+          cornerSquares[Math.floor(Math.random() * cornerSquares.length)];
+        randomCorner.classList.add("flip");
+        playSound(spin);
+        randomCorner.innerHTML = "X";
+        moveMade = true;
+      }
+    }
+
+    if (!moveMade) {
+      const randomIndex = Math.floor(Math.random() * emptySquares.length);
+      const cpuSquare = emptySquares[randomIndex];
+      cpuSquare.classList.add("flip");
+      playSound(spin);
+      cpuSquare.innerHTML = "X";
+    }
+
+    checkWinner();
+    playerTurn = true;
   }
 }
