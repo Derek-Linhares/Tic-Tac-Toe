@@ -55,13 +55,12 @@ function toggleMusic() {
 
 function resetGame() {
   if (moved) {
-    setTimeout(() => {
-      playSound(spin);
-    }, 185);
+    setTimeout(() => {}, 185);
   }
   squares.forEach((square) => {
     setTimeout(() => {
       square.classList.remove("flip", "blink");
+      playSound(spin);
     }, 185);
     square.innerHTML = "";
     result.innerHTML = "";

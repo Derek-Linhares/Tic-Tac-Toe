@@ -7,6 +7,7 @@ function startVsCPU() {
   squares.forEach((square) => {
     square.addEventListener("click", () => {
       if (canPlay && square.innerHTML === "" && playerTurn) {
+        moved = true;
         square.classList.add("flip");
         playSound(spin);
         square.innerHTML = "O";
