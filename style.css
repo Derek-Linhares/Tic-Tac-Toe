@@ -114,10 +114,15 @@ h2 {
   text-align: center;
   font-size: 8rem;
   color: #ffffff;
-  background: transparent;
+  background: rgba(33, 0, 249, 0.001); /* Semi-transparent background */
+  backdrop-filter: blur(0.2rem); /* Blur effect on the background */
+  -webkit-backdrop-filter: blur(0.2rem);
   border: #ff00bfab 0.2rem solid;
   text-shadow: 0 0 0.5rem #fff, 0 0 1rem #fff, 0 0 1.5rem #fff, 0 0 2rem #ff18ff,
     0 0 3rem #ff18ff, 0 0 4rem #ff18ff, 0 0 5.5rem #ff18ff, 0 0 7.5rem #ff18ff;
+  box-shadow: 0 0 0.01rem #8969f5, 0 0 1rem #8969f5, 0 0 0.75rem #8969f5,
+    0 0 1rem #410141, 0 0 1.5rem #410141, 0 0 2rem #410141, 0 0 2.25rem #410141,
+    0 0 7.5rem #410141;
 }
 
 .flip {
@@ -125,7 +130,12 @@ h2 {
 }
 
 .blink {
-  background-color: rgb(132, 2, 158);
+  background: linear-gradient(60deg, #67004d, #ea0787, #61016b, #32017b);
+  background-size: 200%;
+  animation: animate3 5s infinite ease;
+  box-shadow: 0 0 0.01rem #fff, 0 0 1rem #fff, 0 0 0.75rem #fff,
+    0 0 1rem #ff18ff, 0 0 1.5rem #ff18ff, 0 0 2rem #ff18ff, 0 0 2.25rem #ff18ff,
+    0 0 7.5rem #ff18ff;
 }
 
 #result {
@@ -138,11 +148,8 @@ h2 {
   margin-top: -5rem;
 }
 #restart {
-  width: 25rem;
-  height: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
+
   text-align: center;
   cursor: pointer;
   font-size: 4rem;
@@ -189,6 +196,9 @@ h2 {
   z-index: 1;
   cursor: pointer;
   padding: 2rem;
+  box-shadow: 0 0 0.01rem #fff, 0 0 1rem #fff, 0 0 0.75rem #fff,
+    0 0 1rem #ff18ff, 0 0 1.5rem #ff18ff, 0 0 2rem #ff18ff, 0 0 2.25rem #ff18ff,
+    0 0 7.5rem #ff18ff;
 }
 
 #welcome {
@@ -197,7 +207,6 @@ h2 {
   position: fixed;
   top: 0;
   bottom: 0;
-  background-color: rgba(rgb(178, 0, 238), green, blue, 0.1);
   z-index: 5;
   display: flex;
   flex-direction: column;
@@ -214,8 +223,8 @@ h2 {
 #welcomeH1 {
   width: 55rem;
   font-size: 8rem;
-  margin-bottom: 5rem;
   text-align: center;
+  display: inline-block;
 }
 
 .btn:hover {
@@ -228,6 +237,31 @@ h2 {
   }
   100% {
     background-position: 400%;
+  }
+}
+@keyframes animate3 {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes animate2 {
+  0% {
+    background-position: 0%;
+    transform: scale(1);
+  }
+  50% {
+    background-position: 25%;
+    transform: scale(1.03);
+  }
+  100% {
+    background-position: 5%;
+    transform: scale(1);
   }
 }
 
@@ -270,12 +304,27 @@ h2 {
 
 @media (max-width: 768px) {
   html {
-    font-size: 5px;
+    font-size: 4.8px;
   }
-}
+  body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    touch-action: none;
+  }
 
-body {
-  overflow-y: hidden;
-  overflow-x: hidden;
-  touch-action: none;
+  #onePlayerEasyButton {
+    animation: animate2 1.7s infinite ease-in-out;
+  }
+  #onePlayerHardButton {
+    animation: animate2 1.7s infinite ease-in-out;
+    animation-delay: 0.5s;
+  }
+  #onePlayerHardButton {
+    animation: animate2 1.7s infinite ease-in-out;
+    animation-delay: 0.15s;
+  }
+  #twoPlayerButton {
+    animation: animate2 1.7s infinite ease-in-out;
+    animation-delay: 0.3s;
+  }
 }
