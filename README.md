@@ -1,5 +1,4 @@
-Here's a sample README for the "80's Tic-Tac-Toe Game":
-https://tic-tac-toe-pi-amber.vercel.app/
+You can play the '80's Tic-Tac-Toe Game' here: https://tic-tac-toe-pi-amber.vercel.app
 
 ---
 
