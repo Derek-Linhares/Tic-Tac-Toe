@@ -157,6 +157,16 @@ h2 {
   animation: grow 2s infinite ease-in-out;
 }
 
+#main{
+  position: absolute;
+  top: 5rem;
+  font-size: 5rem;
+  left: 5rem;
+  cursor: pointer;
+  visibility: hidden;
+  transform: rotate(180deg);
+}
+
 @keyframes grow {
   0% {
     transform: scale(1);

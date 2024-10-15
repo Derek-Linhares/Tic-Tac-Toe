@@ -31,6 +31,7 @@ let playerOne = document.getElementById("playerOne");
 let playerTwo = document.getElementById("playerTwo");
 let cpu = false;
 let playerTurn = true;
+let start = document.getElementById("main")
 
 function gameStart() {
   titleScreen.style.visibility = "hidden";
@@ -38,9 +39,14 @@ function gameStart() {
   container.style.visibility = "visible";
   title.style.visibility = "visible";
   score.style.visibility = "visible";
+  main.style.visibility = "visible";
   playSound(background);
   playingTheme = true;
 }
+
+start.addEventListener("click", function() {
+  window.location.reload();
+});
 
 function toggleMusic() {
   if (playingTheme) {
