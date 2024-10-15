@@ -167,6 +167,11 @@ h2 {
   transform: rotate(180deg);
 }
 
+#main:hover{
+  transform: scale(1.1) rotate(180deg);
+ 
+}
+
 @keyframes grow {
   0% {
     transform: scale(1);
@@ -187,6 +192,10 @@ h2 {
   font-size: 5rem;
   cursor: pointer;
   visibility: hidden;
+}
+
+#note:hover{
+  transform: scale(1.1);
 }
 
 .btn {
