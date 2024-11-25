@@ -27,11 +27,11 @@ function startVsCPUHard() {
 
     let bestMove;
     if (emptySquares.length === 9) {
-      bestMove = 0; // Primeira jogada da CPU: canto
+      bestMove = 0; 
     } else if (emptySquares.length === 8) {
       bestMove = emptySquares.includes(document.getElementById("4"))
-        ? 4 // Segunda jogada da CPU: centro, se disponível
-        : 2; // Caso o centro esteja ocupado, joga em outro canto
+        ? 4 
+        : 2;
     } else {
       bestMove = minimax(true, -Infinity, Infinity).index;
     }
@@ -66,7 +66,7 @@ function startVsCPUHard() {
             bestMove = i;
           }
           alpha = Math.max(alpha, score);
-          if (beta <= alpha) break; // Poda beta
+          if (beta <= alpha) break; 
         }
       }
       return { score: bestScore, index: bestMove };
@@ -82,7 +82,7 @@ function startVsCPUHard() {
             bestMove = i;
           }
           beta = Math.min(beta, score);
-          if (beta <= alpha) break; // Poda alfa
+          if (beta <= alpha) break; 
         }
       }
       return { score: bestScore, index: bestMove };

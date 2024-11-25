@@ -26,12 +26,12 @@ function startVsCPU() {
     );
     let moveMade = false;
 
-    // 50% de chance de tentar bloquear ou ganhar
+   
     if (Math.random() < 0.5) {
       moveMade = makeBestMove("X") || makeBestMove("O");
     }
 
-    // Se não fez a jogada, joga no centro, canto ou aleatório
+    
     if (!moveMade) {
       const centerSquare = document.getElementById("4");
       if (centerSquare.innerHTML === "") {
