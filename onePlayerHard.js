@@ -2,6 +2,7 @@ function startVsCPUHard() {
   cpu = true;
   playerOne.innerText = "Human";
   playerTwo.innerText = "Computer";
+  title.innerText = "Impossible "
   gameStart();
 
   squares.forEach((square) => {

@@ -2,6 +2,7 @@ function startVsCPUMedium() {
   cpu = true;
   playerOne.innerText = "Human";
   playerTwo.innerText = "Computer";
+  title.innerText = "Medium "
   gameStart();
   squares.forEach((square) => {
     square.addEventListener("click", () => {

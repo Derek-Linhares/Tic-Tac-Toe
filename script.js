@@ -29,6 +29,7 @@ const container = document.getElementById("container");
 const score = document.getElementById("score");
 let playerOne = document.getElementById("playerOne");
 let playerTwo = document.getElementById("playerTwo");
+
 let cpu = false;
 let playerTurn = true;
 let start = document.getElementById("main")

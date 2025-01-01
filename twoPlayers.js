@@ -1,6 +1,6 @@
 function StartTwoPlayers() {
   gameStart();
-
+  title.innerText = "Two Players"
   squares.forEach((square) => {
     square.addEventListener("click", () => {
       if (canPlay && square.innerHTML === "") {
