@@ -14,6 +14,7 @@ Welcome to the **80's Tic-Tac-Toe Game**! This is a nostalgic take on the classi
 - **Two-Player Mode**: Challenge your friends in local multiplayer mode.
 - **Responsive Design**: Play on any device, from your desktop to your mobile phone.
 - **Interactive UI**: Enjoy smooth animations and dynamic sound effects that enhance the gaming experience.
+- **Multiplayer Mode**: Challenge your friends in online mode.
 
 ## Getting Started
 
@@ -55,7 +56,7 @@ To run the 80's Tic-Tac-Toe Game locally, you'll need:
 ## Future Plans
 
 - **Additional Themes:** More retro themes, each inspired by different decades.
-- **Online Multiplayer:** Play with friends online.
+- **Online Multiplayer:** Play with friends online. &#x2705
 - **New Features:** Timed modes, scoreboards, and more.
 
 ## Contributing
