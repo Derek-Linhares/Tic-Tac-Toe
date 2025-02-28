@@ -10,11 +10,6 @@ const gameIdDisplay = document.getElementById("onlineContainer");
 
 const waitingMsg = document.getElementById("waitingMsg"); // Elemento para mensagem do guest
 
-function playSound(sound) {
-  // Sua implementação para reproduzir o som
-  sound.play();
-}
-
 function generateGameId() {
   return Math.random().toString(36).substr(2, 5);
 }

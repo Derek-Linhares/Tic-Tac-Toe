@@ -32,7 +32,7 @@ let playerTwo = document.getElementById("playerTwo");
 
 let cpu = false;
 let playerTurn = true;
-let start = document.getElementById("main")
+let start = document.getElementById("main");
 
 function gameStart() {
   titleScreen.style.visibility = "hidden";
@@ -45,7 +45,7 @@ function gameStart() {
   playingTheme = true;
 }
 
-start.addEventListener("click", function() {
+start.addEventListener("click", function () {
   window.location.reload();
 });
 
