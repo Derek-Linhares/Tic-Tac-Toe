@@ -56,7 +56,7 @@ To run the 80's Tic-Tac-Toe Game locally, you'll need:
 ## Future Plans
 
 - **Additional Themes:** More retro themes, each inspired by different decades.
-- **Online Multiplayer:** Play with friends online. &#x2705
+- **Online Multiplayer:** Play with friends online. ✅
 - **New Features:** Timed modes, scoreboards, and more.
 
 ## Contributing
