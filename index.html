@@ -7,25 +7,31 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="./firebase.js"></script>
 
 </head>
 
 <body>
 
     <div id="welcome">
-        <h1 id="welcomeH1">Welcome to  the 80s Tic Tac Toe Game</h1>
+        <h1 id="welcomeH1">80s Tic Tac Toe Game</h1>
 
         <div class="btn" id="onePlayerEasyButton" onclick="startVsCPU()">One Player Vs Cpu Easy</div>
         <div class="btn" id="onePlayerHardButton" onclick="startVsCPUMedium()">One Player Vs Cpu Medium</div>
         <div class="btn" id="onePlayerHardButton" onclick="startVsCPUHard()">One Player Vs Cpu Impossible</div>
         <div class="btn" id="twoPlayerButton" onclick="StartTwoPlayers()">Two Players local Game</div>
+
+        <div class="btn" onclick="StartTwoPlayersOnline(true)">Create Online Game</div>
+        <div class="btn" onclick="StartTwoPlayersOnline(false)">Join Online Game</div>
     </div>
 
     <div id="note" onclick="toggleMusic(background)">🎶</div>
 
     <div id="main">&#10150</div>
     <h1 id="title">Tic Tac Toe</h1>
-    
+
     <div id="score">
 
         <div>
@@ -40,6 +46,14 @@
             <h2 id="playerTwo">Player X</h2>
             <div id="scoreX">0</div>
         </div>
+
+
+
+    </div>
+
+    <div id="onlineContainer">
+
+
 
     </div>
     <div id="container">
@@ -57,7 +71,9 @@
     <div id="result">
     </div>
     <div id="restart" onclick="resetGame()">Restart Game</div>
-    
+    <div id="waitingMsg"></div>
+
+
     <audio
         src="./assets/80s Retrowave _ Synthwave Music - Hackers by Karl Casey __ Royalty Free Copyright Safe Music - White Bat Audio.mp3"
         id="backgroundMusic" loop="true"></audio>
@@ -74,6 +90,7 @@
 
 
     <script src="./twoPlayers.js"></script>
+    <script src="./twoPlayersOnline.js"></script>
 </body>
 
 </html>

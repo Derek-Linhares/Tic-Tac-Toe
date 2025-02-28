@@ -1,0 +1,14 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "You can play the '80's Tic-Tac-Toe Game' here: https://tic-tac-toe-pi-amber.vercel.app",
+  "main": "onePlayer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^11.4.0"
+  }
+}

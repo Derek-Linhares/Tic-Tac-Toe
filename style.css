@@ -55,6 +55,65 @@ h1 {
   margin-top: 5rem;
   visibility: hidden;
   text-align: center;
+  user-select: text;
+}
+
+#joinForm {
+  width: 75rem;
+  height: 75rem;
+  border-radius: 2%;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#inputContainer {
+  background-color: #32017b;
+  opacity: 50%;
+  width: 75rem;
+  height: 75rem;
+  border-radius: 2%;
+  position: absolute;
+  z-index: 0;
+}
+#startButton {
+  margin-top: 5rem;
+  border: none;
+  display: inline;
+  width: 45rem;
+  text-align: center;
+  line-height: 6rem;
+  color: #fff;
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 400%;
+  border-radius: 3rem;
+  z-index: 1;
+  cursor: pointer;
+  padding: 2rem;
+  box-shadow: 0 0 0.01rem #fff, 0 0 1rem #fff, 0 0 0.75rem #fff,
+    0 0 1rem #ff18ff, 0 0 1.5rem #ff18ff, 0 0 2rem #ff18ff, 0 0 2.25rem #ff18ff,
+    0 0 7.5rem #ff18ff;
+}
+
+#startButton:hover {
+  animation: animate 8s linear infinite;
+}
+
+#gameIdInput {
+  width: 50rem;
+  height: 10rem;
+  text-align: center;
+  font-size: 5rem;
+  border-radius: 1rem;
+  z-index: 11;
 }
 
 #score {
@@ -157,7 +216,7 @@ h2 {
   animation: grow 2s infinite ease-in-out;
 }
 
-#main{
+#main {
   position: absolute;
   top: 5rem;
   font-size: 5rem;
@@ -167,9 +226,8 @@ h2 {
   transform: rotate(180deg);
 }
 
-#main:hover{
+#main:hover {
   transform: scale(1.1) rotate(180deg);
- 
 }
 
 @keyframes grow {
@@ -194,11 +252,12 @@ h2 {
   visibility: hidden;
 }
 
-#note:hover{
+#note:hover {
   transform: scale(1.1);
 }
 
 .btn {
+  border: none;
   display: inline;
   width: 45rem;
   text-align: center;
@@ -240,8 +299,8 @@ h2 {
 }
 
 #welcomeH1 {
-  width: 55rem;
-  font-size: 8rem;
+  width: 60rem;
+  font-size: 6rem;
   text-align: center;
   display: inline-block;
 }
@@ -346,4 +405,19 @@ h2 {
     animation: animate2 1.7s infinite ease-in-out;
     animation-delay: 0.3s;
   }
+}
+
+#onlineContainer {
+  width: 500px;
+  height: 500px;
+
+  position: absolute;
+  top: 50;
+  left: 0;
+  visibility: hidden;
+}
+
+#waitingMsg {
+  font-size: 7rem;
+  margin-top: -5rem;
 }
