@@ -16,7 +16,7 @@ Welcome to the **80's Tic-Tac-Toe Game**! This is a nostalgic take on the classi
 - **Interactive UI**: Enjoy smooth animations and dynamic sound effects that enhance the gaming experience.
 - **Multiplayer Mode**: Challenge your friends in online mode.
 
- ![Image Alt]([image_url](https://github.com/Derek-Linhares/Tic-Tac-Toe/blob/main/Captura%20de%20tela%202025-02-28%20172920.png?raw=true))
+ ![Image Alt](https://github.com/Derek-Linhares/Tic-Tac-Toe/blob/b76fbfee053c30fb879bace3ab2b8f513854a8cf/Captura%20de%20tela%202025-02-28%20172920.png)
 
 ## Getting Started
 
