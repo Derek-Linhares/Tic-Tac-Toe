@@ -1,4 +1,8 @@
 const squares = document.querySelectorAll(".square");
+const single = document.getElementById("single");
+const multi = document.getElementById("multi");
+const options = document.getElementById("options");
+
 const background = document.getElementById("backgroundMusic");
 const spin = document.getElementById("spinSound");
 const x = document.getElementById("playerX");
@@ -34,6 +38,15 @@ let cpu = false;
 let playerTurn = true;
 let start = document.getElementById("main");
 
+function showSingle() {
+  options.style.visibility = "hidden";
+  single.style.visibility = "visible";
+}
+function showMulti() {
+  options.style.visibility = "hidden";
+  multi.style.visibility = "visible";
+}
+
 function gameStart() {
   titleScreen.style.visibility = "hidden";
   musicBtn.style.visibility = "visible";
@@ -41,6 +54,9 @@ function gameStart() {
   title.style.visibility = "visible";
   score.style.visibility = "visible";
   main.style.visibility = "visible";
+  options.style.visibility = "hidden";
+  multi.style.visibility = "hidden";
+  single.style.visibility = "hidden";
   playSound(background);
   playingTheme = true;
 }

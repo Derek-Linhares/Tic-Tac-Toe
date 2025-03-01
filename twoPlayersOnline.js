@@ -1,6 +1,3 @@
-// Certifique-se de que as variáveis e funções (gamesRef, squares, container, title, result,
-// restart, scoreO, scoreX, scoreDraw, spin, gameStart(), etc.) estejam definidas e inicializadas.
-
 let currentGameRef;
 let gameId;
 let playerName;
@@ -8,7 +5,7 @@ let previousBoard = Array(9).fill("");
 
 const gameIdDisplay = document.getElementById("onlineContainer");
 
-const waitingMsg = document.getElementById("waitingMsg"); // Elemento para mensagem do guest
+const waitingMsg = document.getElementById("waitingMsg");
 
 function generateGameId() {
   return Math.random().toString(36).substr(2, 5);
@@ -19,7 +16,6 @@ function createOnlineGame() {
   currentGameRef = gamesRef.child(gameId);
   playerName = `Player1_${Date.now()}`;
 
-  // Estado inicial com placar e lastRestart
   const initialGameState = {
     players: {
       player1: playerName,
@@ -68,7 +64,6 @@ function setupGameListeners() {
 
     title.innerText = `Online Game - Room ID: ${gameId}`;
 
-    // Exibe o resultado quando o jogo terminar
     if (gameState.status === "finished") {
       result.innerHTML =
         gameState.winner === "Draw"
@@ -80,7 +75,6 @@ function setupGameListeners() {
       result.innerHTML = "";
     }
 
-    // Controle de restart
     if (gameState.status === "finished") {
       if (playerName === gameState.players.player1) {
         restart.style.visibility = "visible";
@@ -95,17 +89,14 @@ function setupGameListeners() {
       waitingMsg.style.display = "none";
     }
 
-    // Se houve um reset, limpa o board do guest
     if (gameState.restartId && playerName === gameState.players.player2) {
       resetGuestBoard();
     }
 
-    // Atualiza o tabuleiro e anima somente as novas jogadas
     gameState.board.forEach((symbol, index) => {
       if (previousBoard[index] !== symbol) {
         squares[index].innerHTML = symbol;
 
-        // Apenas anima se for uma nova jogada (não deve animar as jogadas já feitas)
         if (symbol !== "" && previousBoard[index] === "") {
           squares[index].classList.add("flip");
           playSound(spin);
@@ -118,17 +109,14 @@ function setupGameListeners() {
       }
     });
 
-    // Atualiza previousBoard para refletir o estado atual
     previousBoard = [...gameState.board];
 
-    // Atualiza o placar
     if (gameState.score) {
       scoreO.innerText = gameState.score.O;
       scoreX.innerText = gameState.score.X;
       scoreDraw.innerText = gameState.score.draws;
     }
 
-    // Define se é a vez do jogador local
     const isPlayer1 = playerName === gameState.players.player1;
     const isPlayerTurn =
       (isPlayer1 && gameState.currentPlayer === "O") ||
@@ -179,7 +167,6 @@ function makeOnlineMove(index) {
       gameState.board[index] = gameState.currentPlayer;
       gameState.currentPlayer = gameState.currentPlayer === "O" ? "X" : "O";
 
-      // Verifica vitória ou empate e atualiza o placar
       const winner = checkOnlineWinner(gameState.board);
       if (winner) {
         gameState.winner = winner;
@@ -212,12 +199,12 @@ function checkOnlineWinner(board) {
   const winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
-    [6, 7, 8], // Linhas
+    [6, 7, 8],
     [0, 3, 6],
     [1, 4, 7],
-    [2, 5, 8], // Colunas
+    [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6], // Diagonais
+    [2, 4, 6],
   ];
 
   for (const combo of winningCombinations) {
@@ -229,7 +216,6 @@ function checkOnlineWinner(board) {
   return null;
 }
 
-// Eventos de clique para cada célula do tabuleiro
 squares.forEach((square, index) => {
   square.addEventListener("click", () => {
     if (canPlay && square.innerHTML === "") {
@@ -256,7 +242,6 @@ function hideJoinForm() {
   if (joinForm) joinForm.remove();
 }
 
-// Apenas o host pode reiniciar: quando clicado, atualiza o estado do jogo para ambos
 function restartGame() {
   currentGameRef.once("value").then((snapshot) => {
     const gameState = snapshot.val();
@@ -276,7 +261,7 @@ function restartGame() {
         status: "playing",
         winner: null,
         score: gameState.score,
-        restartId: Date.now(), // 🔥 Importante para o guest detectar o reinício
+        restartId: Date.now(),
       };
 
       currentGameRef.set(newState);
@@ -287,7 +272,6 @@ function restartGame() {
         square.innerHTML = "";
       });
 
-      // 🔥 Força o guest a atualizar corretamente após o reset
       setTimeout(() => {
         resetGuestBoard();
       }, 500);
@@ -296,7 +280,7 @@ function restartGame() {
 }
 
 function StartTwoPlayersOnline(isHost) {
-  gameStart(); // Função que prepara a interface e reseta o tabuleiro
+  gameStart();
   title.innerText = "Online Multiplayer";
 
   if (isHost) {
@@ -313,5 +297,4 @@ function StartTwoPlayersOnline(isHost) {
   }
 }
 
-// Apenas o host terá o botão funcional; o guest só verá a mensagem de aguardo.
 restart.addEventListener("click", restartGame);

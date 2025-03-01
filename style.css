@@ -299,10 +299,44 @@ h2 {
 }
 
 #welcomeH1 {
-  width: 60rem;
-  font-size: 6rem;
+  width: 55rem;
+  font-size: 8rem;
   text-align: center;
   display: inline-block;
+  margin-top: 10rem;
+}
+
+#options {
+  margin-top: 10rem;
+  display: flex;
+  gap: 5rem;
+  flex-direction: column;
+  visibility: visible;
+}
+
+#single {
+  width: 50rem;
+  height: 60rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  visibility: hidden;
+  margin-top: -40rem;
+}
+
+#multi {
+  position: absolute;
+  width: 50rem;
+  height: 60rem;
+  margin-top: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  visibility: hidden;
 }
 
 .btn:hover {

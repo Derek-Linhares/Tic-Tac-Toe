@@ -16,15 +16,29 @@
 <body>
 
     <div id="welcome">
-        <h1 id="welcomeH1">80s Tic Tac Toe Game</h1>
+        <h1 id="welcomeH1">Welcome to the 80s Tic Tac Toe Game</h1>
 
-        <div class="btn" id="onePlayerEasyButton" onclick="startVsCPU()">One Player Vs Cpu Easy</div>
-        <div class="btn" id="onePlayerHardButton" onclick="startVsCPUMedium()">One Player Vs Cpu Medium</div>
-        <div class="btn" id="onePlayerHardButton" onclick="startVsCPUHard()">One Player Vs Cpu Impossible</div>
-        <div class="btn" id="twoPlayerButton" onclick="StartTwoPlayers()">Two Players local Game</div>
+        <div id="options">
+            <div class="btn" id="onePlayerEasyButton" onclick="showSingle() ">Single-Player Game</div>
+            <div class="btn" id="onePlayerEasyButton" onclick="showMulti()">MultiPlayer Game</div>
+        </div>
 
-        <div class="btn" onclick="StartTwoPlayersOnline(true)">Create Online Game</div>
-        <div class="btn" onclick="StartTwoPlayersOnline(false)">Join Online Game</div>
+        <div id="single">
+            <div class="btn" id="onePlayerEasyButton" onclick="startVsCPU()">One Player Vs Cpu Easy</div>
+            <div class="btn" id="onePlayerHardButton" onclick="startVsCPUMedium()">One Player Vs Cpu Medium</div>
+            <div class="btn" id="onePlayerHardButton" onclick="startVsCPUHard()">One Player Vs Cpu Impossible</div>
+            <div class="btn" id="onePlayerEasyButton" onclick="window.location.reload();">main menu</div>
+        </div>
+
+        <div id="multi">
+
+            <div class="btn" id="twoPlayerButton" onclick="StartTwoPlayers()">Two Players local Game</div>
+
+            <div class="btn" onclick="StartTwoPlayersOnline(true)">Create Online Game</div>
+            <div class="btn" onclick="StartTwoPlayersOnline(false)">Join Online Game</div>
+            <div class="btn" id="onePlayerEasyButton" onclick="window.location.reload();">main menu</div>
+        </div>
+
     </div>
 
     <div id="note" onclick="toggleMusic(background)">🎶</div>
