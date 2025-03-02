@@ -107,13 +107,14 @@ h1 {
   animation: animate 8s linear infinite;
 }
 
-#gameIdInput {
+.onlineInputs {
   width: 50rem;
   height: 10rem;
   text-align: center;
   font-size: 5rem;
   border-radius: 1rem;
   z-index: 11;
+  margin-bottom: 2rem;
 }
 
 #score {
@@ -442,13 +443,27 @@ h2 {
 }
 
 #onlineContainer {
-  width: 500px;
-  height: 500px;
+  width: 75rem;
+  height: 75rem;
+  border-radius: 2%;
+  background-color: rgba(50, 1, 123, 0.5);
 
   position: absolute;
-  top: 50;
-  left: 0;
+  visibility: visible;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  flex-direction: column;
   visibility: hidden;
+}
+
+#onlineContainer h1 {
+  animation: grow 2s infinite ease-in-out;
+  text-align: center;
+  font-size: 5.5rem;
+  user-select: text;
 }
 
 #waitingMsg {

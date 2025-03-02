@@ -2,6 +2,7 @@ let currentGameRef;
 let gameId;
 let playerName;
 let previousBoard = Array(9).fill("");
+let onlineContainer = document.getElementById("onlineContainer");
 
 const gameIdDisplay = document.getElementById("onlineContainer");
 
@@ -10,7 +11,6 @@ const waitingMsg = document.getElementById("waitingMsg");
 function generateGameId() {
   return Math.random().toString(36).substr(2, 5);
 }
-
 function createOnlineGame() {
   gameId = generateGameId();
   currentGameRef = gamesRef.child(gameId);
@@ -34,6 +34,10 @@ function createOnlineGame() {
   };
 
   currentGameRef.set(initialGameState);
+
+  // Configura a desconexão do player1 (host)
+  currentGameRef.child("players/player1").onDisconnect().set(null);
+
   setupGameListeners();
   showGameIdToHost();
 }
@@ -43,18 +47,40 @@ function joinOnlineGame(joinId) {
   currentGameRef = gamesRef.child(gameId);
   playerName = `Player2_${Date.now()}`;
 
-  currentGameRef
-    .transaction((gameState) => {
-      if (gameState && gameState.status === "waiting") {
-        gameState.players.player2 = playerName;
-        gameState.status = "playing";
-      }
-      return gameState;
-    })
-    .then(() => {
-      setupGameListeners();
-      hideJoinForm();
-    });
+  currentGameRef.once("value").then((snapshot) => {
+    const gameState = snapshot.val();
+
+    if (!gameState) {
+      alert("This room does not exist. Please check the ID and try again.");
+      return;
+    }
+
+    if (gameState.status !== "waiting") {
+      alert("This room is either in progress or has been completed.");
+      return;
+    }
+
+    currentGameRef
+      .transaction((gameState) => {
+        if (gameState && gameState.status === "waiting") {
+          gameState.players.player2 = playerName;
+          gameState.status = "playing";
+        }
+        return gameState;
+      })
+      .then(() => {
+        setupGameListeners();
+        hideJoinForm();
+
+        // Configura a desconexão do player2 (guest)
+        currentGameRef.child("players/player2").onDisconnect().set(null);
+
+        // Esconde o container do código da sala
+        if (onlineContainer) {
+          onlineContainer.style.visibility = "hidden";
+        }
+      });
+  });
 }
 
 function setupGameListeners() {
@@ -63,6 +89,12 @@ function setupGameListeners() {
     if (!gameState) return;
 
     title.innerText = `Online Game - Room ID: ${gameId}`;
+
+    // Verifica se o adversário saiu
+    if (gameState.players.player2 === null) {
+      result.innerHTML = "<h1>There is no one else in the room.</h1>";
+      waitingMsg.style.display = "none";
+    }
 
     if (gameState.status === "finished") {
       result.innerHTML =
@@ -124,6 +156,18 @@ function setupGameListeners() {
 
     canPlay =
       gameState.status === "playing" && isPlayerTurn && !gameState.winner;
+
+    // Verifica o turno do jogador
+    if (canPlay) {
+      result.innerHTML = "<h1>Your Turn</h1>";
+    } else if (!canPlay && gameState.status === "playing") {
+      result.innerHTML = "<h1>Opponent's Turn</h1>";
+    }
+
+    // Esconde o container do código da sala para ambos os jogadores
+    if (gameState.players.player1 && gameState.players.player2) {
+      onlineContainer.style.visibility = "hidden";
+    }
   });
 }
 
@@ -227,13 +271,14 @@ squares.forEach((square, index) => {
 });
 
 function showGameIdToHost() {
-  gameIdDisplay.innerHTML = `
-    <div id="onlineContainer">
-      <h2>Game ID: ${gameId}</h2>
-      <p>Share this ID with your friend!</p>
-      <div id="onlineStatus">Waiting for player 2...</div>
-    </div>
+  onlineContainer.innerHTML = `
+    
+ 
+  <h1>${gameId}</h1>
+    <p>Send the glowing ID to a friend!</p>
+    <div id="onlineStatus">Waiting for player 2...</div>
   `;
+
   container.prepend(gameIdDisplay);
 }
 
@@ -280,6 +325,7 @@ function restartGame() {
 }
 
 function StartTwoPlayersOnline(isHost) {
+  onlineContainer.style.visibility = "visible";
   gameStart();
   title.innerText = "Online Multiplayer";
 
@@ -288,11 +334,15 @@ function StartTwoPlayersOnline(isHost) {
   } else {
     const joinForm = document.createElement("div");
     joinForm.id = "joinForm";
+    onlineContainer.style.visibility = "hidden";
     joinForm.innerHTML = `
-      <input type="text" id="gameIdInput" placeholder="Enter Game ID">
+      <input type="text" class= "onlineInputs" id="gameIdInput" placeholder="Enter Game ID">
+     
       <button id="startButton" onclick="joinOnlineGame(document.getElementById('gameIdInput').value)">Join Game</button>
       <div id="inputContainer"></div>
+      
     `;
+
     container.prepend(joinForm);
   }
 }
