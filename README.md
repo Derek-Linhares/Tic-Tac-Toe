@@ -76,4 +76,4 @@ This project is licensed under the **MIT License**. See the `LICENSE` file for m
 🚀 **Enjoy the game and relive the 80s!** 🎮
 
 
-🔗 **Check this project online:** [https://biscoito-da-sorte-opal.vercel.app/](https://tic-tac-toe-pi-amber.vercel.app/)
+🔗 **Try it online:** [https://biscoito-da-sorte-opal.vercel.app/](https://tic-tac-toe-pi-amber.vercel.app/)
